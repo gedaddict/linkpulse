@@ -1,0 +1,3 @@
+rootProject.name = 'linkpulse'
+
+include 'linkpulse-common', 'shortener-service', 'analytics-service'
