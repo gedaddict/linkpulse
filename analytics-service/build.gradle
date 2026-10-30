@@ -3,6 +3,8 @@ plugins {
 }
 
 dependencies {
+    implementation project(':linkpulse-common')
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-kafka'
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
