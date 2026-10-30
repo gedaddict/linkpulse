@@ -9,7 +9,7 @@ import java.time.Instant;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "Links")
+@Table(name = "links")
 public class Link {
 
     @Id

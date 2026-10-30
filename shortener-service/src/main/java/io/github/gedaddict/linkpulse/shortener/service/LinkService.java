@@ -1,7 +1,7 @@
 package io.github.gedaddict.linkpulse.shortener.service;
 
+import io.github.gedaddict.linkpulse.common.exception.NotFoundException;
 import io.github.gedaddict.linkpulse.shortener.entity.Link;
-import io.github.gedaddict.linkpulse.shortener.exception.NotFoundException;
 import io.github.gedaddict.linkpulse.shortener.repository.LinkRespository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

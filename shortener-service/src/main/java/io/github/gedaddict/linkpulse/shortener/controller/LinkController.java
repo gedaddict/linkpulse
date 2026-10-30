@@ -8,9 +8,11 @@ import io.github.gedaddict.linkpulse.shortener.entity.Link;
 import io.github.gedaddict.linkpulse.shortener.service.LinkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +51,7 @@ public class LinkController {
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<CreateLinkResponse> getLink(@PathVariable String code) {
+    public ResponseEntity<Void> getLink(@PathVariable String code) {
         Link link = linkService.getLink(code);
         publisher.publish(new ClickEvent(
                 link.getShortCode(),
@@ -57,12 +59,9 @@ public class LinkController {
                 HttpHeaders.USER_AGENT,
                 HttpHeaders.REFERER)
         );
-        return ResponseEntity.ok()
-                .body(new CreateLinkResponse(
-                        link.getShortCode(),
-                        link.getShortUrl(),
-                        link.getOriginalUrl())
-                );
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .location(URI.create(link.getOriginalUrl()))
+                .build();
     }
 
     @DeleteMapping("/{code}")
@@ -71,5 +70,4 @@ public class LinkController {
         return ResponseEntity.ok()
                 .build();
     }
-
 }

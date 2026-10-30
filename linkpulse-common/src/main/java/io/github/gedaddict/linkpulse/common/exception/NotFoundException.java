@@ -1,4 +1,4 @@
-package io.github.gedaddict.linkpulse.shortener.exception;
+package io.github.gedaddict.linkpulse.common.exception;
 
 public class NotFoundException extends RuntimeException {
 
