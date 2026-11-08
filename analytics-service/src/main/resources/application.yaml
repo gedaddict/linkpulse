@@ -2,13 +2,20 @@ spring:
   application:
     name: analytics-service
   datasource:
-    url: jdbc:mariadb://localhost:3306/linkpulse
+#    url: jdbc:mariadb://localhost:3306/linkpulse
+    url: jdbc:postgresql://localhost:5432/linkpulse
     username: linkpulse
     password: linkpulse
   jpa:
     hibernate:
-      ddl-auto: update
+#      ddl-auto: update
+      ddl-auto: validate
     open-in-view: false
+  flyway:
+    enabled: true
+    table: flyway_history_analytics
+    baseline-on-migrate: true
+    baseline-version: 0
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
